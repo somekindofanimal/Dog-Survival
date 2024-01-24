@@ -117,7 +117,7 @@ public class PlayerDogArmorRenderer extends RenderLayer<AbstractClientPlayer, Pl
             return;
         } 
 
-        renderArmorCutout(this.model, DoggyArmorMapping.getMappedResource(itemStack.getItem(), dog, itemStack), stack, buffer, light, dog, 1.0F, 1.0F, 1.0F);
+        renderArmorCutout(this.model, PlayerDogArmorMapping.getMappedResource(itemStack.getItem(), dog, itemStack), stack, buffer, light, dog, 1.0F, 1.0F, 1.0F);
         
         var trim = ArmorTrim.getTrim(dog.level().registryAccess(), itemStack);
         if (trim.isPresent()) {
@@ -162,12 +162,12 @@ public class PlayerDogArmorRenderer extends RenderLayer<AbstractClientPlayer, Pl
     }
 
     private void renderAlternativeModel(Model model, AbstractClientPlayer dog, PoseStack stack, MultiBufferSource buffer, int light, ItemStack itemStack) {
-        var texLoc = DoggyArmorMapping.getMappedResource(itemStack.getItem(), dog, itemStack);
+        var texLoc = PlayerDogArmorMapping.getMappedResource(itemStack.getItem(), dog, itemStack);
         VertexConsumer ivertexbuilder = buffer.getBuffer(RenderType.armorCutoutNoCull(texLoc));
         model.renderToBuffer(stack, ivertexbuilder, light, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1.0F);
     }
 
-    private void renderArmorCutout(DogArmorModel model, ResourceLocation textureLocationIn, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Dog entityIn, float red, float green, float blue) {
+    private void renderArmorCutout(DogArmorModel model, ResourceLocation textureLocationIn, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, AbstractClientPlayer entityIn, float red, float green, float blue) {
         VertexConsumer ivertexbuilder = bufferIn.getBuffer(RenderType.armorCutoutNoCull(textureLocationIn));
         model.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
     }

@@ -19,6 +19,6 @@ public class EventHandler {
         var dogEyeHeight = dogSize.height * 0.8f;
         event.setNewSize(dogSize);
         event.setNewEyeHeight(dogEyeHeight);
-    }
-    
+        //event.setCanceled(true);
+    }    
 }

@@ -3,6 +3,7 @@ package dogsurvival.client.entity.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import dogsurvival.client.entity.ModelLayerLocations;
+import dogsurvival.client.entity.layers.PlayerDogArmorRenderer;
 import dogsurvival.client.entity.model.PlayerDogModel;
 import dogsurvival.common.lib.Resources;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -16,6 +17,7 @@ public class PlayerDogRenderer extends LivingEntityRenderer<AbstractClientPlayer
     public PlayerDogRenderer(Context ctx) {
         super(ctx, null, 0.5f);
         this.model = new PlayerDogModel<>(ctx.bakeLayer(ModelLayerLocations.CLASSICAL));
+        this.layers.add(new PlayerDogArmorRenderer(this, ctx));
     }
 
     @Override
