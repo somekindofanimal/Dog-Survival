@@ -6,6 +6,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -25,6 +26,14 @@ public class ClientEventHandler {
         float renderYRot = Mth.lerp(pTicks, player.yRotO, player.getYRot());;
         
         playerDogRenderer.render(player, renderYRot, pTicks, stack, buffer, light);
+        event.setCanceled(true);
+    }
+
+    @SubscribeEvent
+    public void onPlayerRenderHand(RenderHandEvent event) {
+        var item = event.getItemStack();
+        if (!item.isEmpty())
+            return;
         event.setCanceled(true);
     }
 
